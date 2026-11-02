@@ -1,0 +1,76 @@
+#include <stdio.h>
+
+int checkEvenOdd(int n)
+{
+    if(n % 2 == 0)
+        return 1;
+    else
+        return 0;
+}
+
+int checkPalindrome(int n)
+{
+    int original = n;
+    int reverse = 0, digit;
+
+    while(n > 0)
+    {
+        digit = n % 10;
+        reverse = reverse * 10 + digit;
+        n = n / 10;
+    }
+
+    return original == reverse;
+}
+
+int checkPrime(int n)
+{
+    int i;
+
+    if(n < 2)
+        return 0;
+
+    for(i = 2; i <= n / i; i++)
+    {
+        if(n % i == 0)
+            return 0;
+    }
+
+    return 1;
+}
+
+void displayResult(int n)
+{
+    if(checkEvenOdd(n))
+        printf("\nEven Number");
+    else
+        printf("\nOdd Number");
+
+    if(checkPalindrome(n))
+        printf("\nPalindrome Number");
+    else
+        printf("\nNot a Palindrome Number");
+
+    if(checkPrime(n))
+        printf("\nPrime Number");
+    else
+        printf("\nNot a Prime Number");
+}
+
+int main()
+{
+    int n;
+
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    if(n <= 0)
+    {
+        printf("Please enter a positive integer.");
+        return 0;
+    }
+
+    displayResult(n);
+
+    return 0;
+}
