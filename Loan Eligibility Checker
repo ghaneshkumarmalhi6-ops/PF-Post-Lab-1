@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+void checkLoan(int age, float salary, float payments)
+{
+    float remaining, loan;
+
+    if(age < 21)
+    {
+        printf("Not Eligible: Age must be at least 21.");
+    }
+    else if(salary < 50000)
+    {
+        printf("Not Eligible: Salary must be at least Rs. 50000.");
+    }
+    else
+    {
+        remaining = salary - payments;
+
+        if(payments < 0 || remaining < salary * 0.40)
+        {
+            printf("Not Eligible: Less than 40%% salary remains.");
+        }
+        else
+        {
+            loan = remaining * 10;
+
+            printf("\nLoan Eligible!");
+            printf("\nRemaining Income: Rs. %.2f", remaining);
+            printf("\nMaximum Loan Amount: Rs. %.2f", loan);
+        }
+    }
+}
+
+int main()
+{
+    int age;
+    float salary, payments;
+
+    printf("Enter age: ");
+    scanf("%d", &age);
+
+    printf("Enter monthly salary: ");
+    scanf("%f", &salary);
+
+    printf("Enter existing monthly loan payments: ");
+    scanf("%f", &payments);
+
+    if(age < 0 || salary < 0 || payments < 0)
+    {
+        printf("Invalid input.");
+        return 0;
+    }
+
+    checkLoan(age, salary, payments);
+
+    return 0;
+}
