@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+float calculateBonus(float salary, int years)
+{
+    if(years > 5)
+        return salary * 0.15;
+    else if(years >= 3)
+        return salary * 0.10;
+    else
+        return salary * 0.05;
+}
+
+void displaySalary(float basic, float bonus)
+{
+    float total, tax = 0, finalSalary;
+
+    total = basic + bonus;
+
+    if(total > 100000)
+        tax = total * 0.05;
+
+    finalSalary = total - tax;
+
+    printf("\nBasic Salary: Rs. %.2f", basic);
+    printf("\nBonus: Rs. %.2f", bonus);
+    printf("\nTax: Rs. %.2f", tax);
+    printf("\nFinal Salary: Rs. %.2f", finalSalary);
+}
+
+int main()
+{
+    float salary, bonus;
+    int years;
+
+    printf("Enter basic salary: ");
+    scanf("%f", &salary);
+
+    printf("Enter years of service: ");
+    scanf("%d", &years);
+
+    if(salary < 0 || years < 0)
+    {
+        printf("Invalid input.");
+        return 0;
+    }
+
+    bonus = calculateBonus(salary, years);
+
+    displaySalary(salary, bonus);
+
+    return 0;
+}
