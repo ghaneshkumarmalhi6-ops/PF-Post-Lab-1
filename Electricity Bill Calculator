@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+float calculateBill(int units, int category)
+{
+    float bill;
+
+    if(category == 1)
+    {
+        if(units <= 100)
+            bill = units * 15;
+        else
+            bill = (100 * 15) + ((units - 100) * 20);
+    }
+    else
+    {
+        bill = units * 25;
+    }
+
+    return bill;
+}
+
+void displayBill(int units, float bill)
+{
+    float surcharge = 0;
+
+    if(bill > 5000)
+        surcharge = bill * 0.05;
+
+    printf("\nUnits Consumed: %d", units);
+    printf("\nBill Amount: Rs. %.2f", bill);
+    printf("\nSurcharge: Rs. %.2f", surcharge);
+    printf("\nFinal Payable: Rs. %.2f", bill + surcharge);
+}
+
+int main()
+{
+    int units, category;
+    float bill;
+
+    printf("Enter units consumed: ");
+    scanf("%d", &units);
+
+    printf("1. Domestic\n2. Commercial\n");
+    printf("Enter category: ");
+    scanf("%d", &category);
+
+    if(units < 0 || (category != 1 && category != 2))
+    {
+        printf("Invalid input.");
+        return 0;
+    }
+
+    bill = calculateBill(units, category);
+
+    displayBill(units, bill);
+
+    return 0;
+}
