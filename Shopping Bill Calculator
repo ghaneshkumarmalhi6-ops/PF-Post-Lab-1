@@ -1,0 +1,72 @@
+#include <stdio.h>
+
+float calculateSubtotal(float price, int quantity)
+{
+    return price * quantity;
+}
+
+float calculateDiscount(float subtotal, int member)
+{
+    float discount = 0;
+
+    if(subtotal > 5000)
+        discount += subtotal * 0.10;
+
+    if(member == 1)
+        discount += subtotal * 0.05;
+
+    return discount;
+}
+
+void displayBill(float subtotal, float discount, int card)
+{
+    float fee = 0, finalAmount;
+
+    finalAmount = subtotal - discount;
+
+    if(card == 1)
+        fee = finalAmount * 0.02;
+
+    finalAmount += fee;
+
+    printf("\n========== SHOPPING RECEIPT ==========");
+    printf("\nSubtotal = Rs. %.2f", subtotal);
+    printf("\nTotal Discount = Rs. %.2f", discount);
+    printf("\nPayment Fee = Rs. %.2f", fee);
+    printf("\nFinal Payable Amount = Rs. %.2f", finalAmount);
+    printf("\n======================================");
+}
+
+int main()
+{
+    float price, subtotal, discount;
+    int quantity, member, card;
+
+    printf("Enter Product Price: ");
+    scanf("%f", &price);
+
+    printf("Enter Quantity: ");
+    scanf("%d", &quantity);
+
+    printf("Are you a Member? (1=Yes, 0=No): ");
+    scanf("%d", &member);
+
+    printf("Payment Method (1=Card, 0=Cash): ");
+    scanf("%d", &card);
+
+    if(price < 0 || quantity <= 0 ||
+       (member != 0 && member != 1) ||
+       (card != 0 && card != 1))
+    {
+        printf("Invalid Input");
+        return 0;
+    }
+
+    subtotal = calculateSubtotal(price, quantity);
+
+    discount = calculateDiscount(subtotal, member);
+
+    displayBill(subtotal, discount, card);
+
+    return 0;
+}
