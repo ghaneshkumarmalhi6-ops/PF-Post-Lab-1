@@ -1,0 +1,77 @@
+#include <stdio.h>
+
+int main()
+{
+    int marks[2][3][4];
+    int i, j, k, total;
+    int count = 0;
+    int highest, highestStudent;
+    int sectionTotal[2] = {0, 0};
+    float average, sectionAverage[2];
+
+    // Input marks
+    for(i = 0; i < 2; i++)
+    {
+        printf("\nSection %d\n", i + 1);
+
+        for(j = 0; j < 3; j++)
+        {
+            printf("Student %d:\n", j + 1);
+
+            for(k = 0; k < 4; k++)
+            {
+                printf("Enter subject %d marks: ", k + 1);
+                scanf("%d", &marks[i][j][k]);
+            }
+        }
+    }
+
+    // Calculate results
+    for(i = 0; i < 2; i++)
+    {
+        highest = -1;
+        highestStudent = 0;
+
+        for(j = 0; j < 3; j++)
+        {
+            total = 0;
+
+            for(k = 0; k < 4; k++)
+            {
+                total += marks[i][j][k];
+            }
+
+            average = total / 4.0;
+            sectionTotal[i] += total;
+
+            printf("\nSection %d, Student %d", i + 1, j + 1);
+            printf("\nTotal = %d", total);
+            printf("\nAverage = %.2f\n", average);
+
+            if(average >= 50)
+                count++;
+
+            if(total > highest)
+            {
+                highest = total;
+                highestStudent = j + 1;
+            }
+        }
+
+        sectionAverage[i] = sectionTotal[i] / 12.0;
+
+        printf("\nHighest scoring student in Section %d: Student %d",
+               i + 1, highestStudent);
+    }
+
+    printf("\n\nStudents with average >= 50: %d", count);
+
+    if(sectionAverage[0] > sectionAverage[1])
+        printf("\nSection 1 has highest overall average.");
+    else if(sectionAverage[1] > sectionAverage[0])
+        printf("\nSection 2 has highest overall average.");
+    else
+        printf("\nBoth sections have equal averages.");
+
+    return 0;
+}
