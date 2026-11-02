@@ -1,0 +1,102 @@
+#include <stdio.h>
+
+void checkBalance(float balance)
+{
+    printf("\nCurrent Balance: Rs. %.2f\n", balance);
+}
+
+float deposit(float balance)
+{
+    float amount;
+
+    printf("Enter deposit amount: ");
+    scanf("%f", &amount);
+
+    if(amount > 0)
+    {
+        balance += amount;
+        printf("Deposit successful.");
+        checkBalance(balance);
+    }
+    else
+    {
+        printf("Invalid deposit amount.");
+    }
+
+    return balance;
+}
+
+float withdraw(float balance)
+{
+    float amount;
+
+    printf("Enter withdrawal amount: ");
+    scanf("%f", &amount);
+
+    if(amount <= 0)
+    {
+        printf("Invalid withdrawal amount.");
+    }
+    else if(amount > 10000)
+    {
+        printf("Maximum withdrawal per transaction is Rs. 10000.");
+    }
+    else if(amount > balance)
+    {
+        printf("Insufficient balance.");
+    }
+    else
+    {
+        balance -= amount;
+
+        printf("Withdrawal successful.");
+        checkBalance(balance);
+
+        if(balance < 5000)
+            printf("WARNING: Low balance!\n");
+    }
+
+    return balance;
+}
+
+int main()
+{
+    float balance = 20000;
+    int choice;
+
+    do
+    {
+        printf("\n\n===== ATM MENU =====");
+        printf("\n1. Check Balance");
+        printf("\n2. Deposit Money");
+        printf("\n3. Withdraw Money");
+        printf("\n4. Exit");
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice)
+        {
+            case 1:
+                checkBalance(balance);
+                break;
+
+            case 2:
+                balance = deposit(balance);
+                break;
+
+            case 3:
+                balance = withdraw(balance);
+                break;
+
+            case 4:
+                printf("Thank you for using ATM.");
+                break;
+
+            default:
+                printf("Invalid choice.");
+        }
+
+    } while(choice != 4);
+
+    return 0;
+}
