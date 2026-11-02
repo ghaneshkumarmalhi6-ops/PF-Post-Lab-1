@@ -1,0 +1,77 @@
+#include <stdio.h>
+
+int main()
+{
+    int sales[2][3][4];
+    int i, j, k;
+    int total, branchTotal[2] = {0, 0};
+    int productTotal;
+    int highestProduct, highestWeek;
+    int weekTotal[4] = {0, 0, 0, 0};
+    int maxWeek = 0;
+
+    // Input sales
+    for(i = 0; i < 2; i++)
+    {
+        printf("\nBranch %d\n", i + 1);
+
+        for(j = 0; j < 3; j++)
+        {
+            for(k = 0; k < 4; k++)
+            {
+                printf("Product %d, Week %d: ", j + 1, k + 1);
+                scanf("%d", &sales[i][j][k]);
+            }
+        }
+    }
+
+    // Calculate sales
+    for(i = 0; i < 2; i++)
+    {
+        highestProduct = 0;
+        int maxProductSales = -1;
+
+        for(j = 0; j < 3; j++)
+        {
+            productTotal = 0;
+
+            for(k = 0; k < 4; k++)
+            {
+                productTotal += sales[i][j][k];
+                weekTotal[k] += sales[i][j][k];
+            }
+
+            branchTotal[i] += productTotal;
+
+            printf("\nBranch %d Product %d Total: %d",
+                   i + 1, j + 1, productTotal);
+
+            if(productTotal > maxProductSales)
+            {
+                maxProductSales = productTotal;
+                highestProduct = j + 1;
+            }
+        }
+
+        printf("\nHighest selling product in Branch %d: Product %d\n",
+               i + 1, highestProduct);
+    }
+
+    // Highest sales week
+    for(k = 0; k < 4; k++)
+    {
+        if(weekTotal[k] > weekTotal[maxWeek])
+            maxWeek = k;
+    }
+
+    printf("\nWeek with highest overall sales: Week %d", maxWeek + 1);
+
+    if(branchTotal[0] > branchTotal[1])
+        printf("\nBranch 1 sold the most products.");
+    else if(branchTotal[1] > branchTotal[0])
+        printf("\nBranch 2 sold the most products.");
+    else
+        printf("\nBoth branches sold equal quantities.");
+
+    return 0;
+}
