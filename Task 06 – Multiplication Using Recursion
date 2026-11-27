@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int multiply(int a, int b)
+{
+    if(b == 0)
+    {
+        return 0;
+    }
+    else
+    {
+        return a + multiply(a, b - 1);
+    }
+}
+
+int main()
+{
+    int a, b, result;
+
+    printf("Enter first positive integer: ");
+    scanf("%d", &a);
+
+    printf("Enter second positive integer: ");
+    scanf("%d", &b);
+
+    result = multiply(a, b);
+
+    printf("Product = %d\n", result);
+
+    return 0;
+}
