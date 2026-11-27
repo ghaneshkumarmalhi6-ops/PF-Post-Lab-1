@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+struct Room
+{
+    int roomNumber;
+    char roomType[30];
+    int occupants;
+    float dailyRent;
+};
+
+int main()
+{
+    struct Room r[5];
+    float totalRent = 0;
+    int i;
+
+    for(i = 0; i < 5; i++)
+    {
+        printf("\nEnter details of Room %d\n", i + 1);
+
+        printf("Room Number: ");
+        scanf("%d", &r[i].roomNumber);
+
+        printf("Room Type: ");
+        scanf(" %[^\n]", r[i].roomType);
+
+        printf("Number of Occupants: ");
+        scanf("%d", &r[i].occupants);
+
+        printf("Daily Rent: ");
+        scanf("%f", &r[i].dailyRent);
+
+        totalRent = totalRent + r[i].dailyRent;
+    }
+
+    printf("\n--- Hotel Room Records ---\n");
+
+    for(i = 0; i < 5; i++)
+    {
+        printf("\nRoom Number: %d\n", r[i].roomNumber);
+        printf("Room Type: %s\n", r[i].roomType);
+        printf("Occupants: %d\n", r[i].occupants);
+        printf("Daily Rent: %.2f\n", r[i].dailyRent);
+    }
+
+    printf("\nTotal Daily Rent: %.2f\n", totalRent);
+
+    return 0;
+}
