@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+struct Owner
+{
+    int ownerID;
+    char ownerName[50];
+    char contactNumber[20];
+};
+
+struct Vehicle
+{
+    int registrationNumber;
+    char vehicleModel[50];
+    int manufacturingYear;
+
+    struct Owner owner;
+};
+
+int main()
+{
+    struct Vehicle v;
+    struct Vehicle *ptr;
+
+    printf("Enter Registration Number: ");
+    scanf("%d", &v.registrationNumber);
+
+    printf("Enter Vehicle Model: ");
+    scanf(" %[^\n]", v.vehicleModel);
+
+    printf("Enter Manufacturing Year: ");
+    scanf("%d", &v.manufacturingYear);
+
+    printf("Enter Owner ID: ");
+    scanf("%d", &v.owner.ownerID);
+
+    printf("Enter Owner Name: ");
+    scanf(" %[^\n]", v.owner.ownerName);
+
+    printf("Enter Contact Number: ");
+    scanf(" %19s", v.owner.contactNumber);
+
+    ptr = &v;
+
+    printf("\n--- Vehicle Information ---\n");
+
+    printf("Registration Number: %d\n",
+           ptr->registrationNumber);
+
+    printf("Vehicle Model: %s\n",
+           ptr->vehicleModel);
+
+    printf("Manufacturing Year: %d\n",
+           ptr->manufacturingYear);
+
+    printf("Owner ID: %d\n",
+           ptr->owner.ownerID);
+
+    printf("Owner Name: %s\n",
+           ptr->owner.ownerName);
+
+    printf("Contact Number: %s\n",
+           ptr->owner.contactNumber);
+
+    return 0;
+}
