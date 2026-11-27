@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int calculateSum(int n)
+{
+    if(n == 0)
+    {
+        return 0;
+    }
+    else
+    {
+        return n + calculateSum(n - 1);
+    }
+}
+
+int main()
+{
+    int n, result;
+
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    result = calculateSum(n);
+
+    printf("Sum of Natural Numbers = %d\n", result);
+
+    return 0;
+}
