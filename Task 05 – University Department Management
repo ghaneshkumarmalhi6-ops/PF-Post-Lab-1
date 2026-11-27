@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+struct Department
+{
+    int departmentID;
+    char departmentName[50];
+    int enrolledStudents;
+
+    struct Head
+    {
+        int employeeID;
+        char name[50];
+        char designation[50];
+    } head;
+};
+
+int main()
+{
+    struct Department d;
+
+    printf("Enter Department ID: ");
+    scanf("%d", &d.departmentID);
+
+    printf("Enter Department Name: ");
+    scanf(" %[^\n]", d.departmentName);
+
+    printf("Enter Number of Students: ");
+    scanf("%d", &d.enrolledStudents);
+
+    printf("Enter Employee ID: ");
+    scanf("%d", &d.head.employeeID);
+
+    printf("Enter Head Name: ");
+    scanf(" %[^\n]", d.head.name);
+
+    printf("Enter Designation: ");
+    scanf(" %[^\n]", d.head.designation);
+
+    printf("\n--- Department Information ---\n");
+
+    printf("Department ID: %d\n", d.departmentID);
+    printf("Department Name: %s\n", d.departmentName);
+    printf("Enrolled Students: %d\n", d.enrolledStudents);
+
+    printf("Employee ID: %d\n", d.head.employeeID);
+    printf("Head Name: %s\n", d.head.name);
+    printf("Designation: %s\n", d.head.designation);
+
+    return 0;
+}
